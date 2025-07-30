@@ -1,0 +1,51 @@
+﻿@model HerveyPlayersBooking.Models.Booking
+
+@{
+    ViewData["Title"] = "Book Prodigy";
+}
+
+<h2>Book Prodigy</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="ShowDate"></label>
+        <input asp-for="ShowDate" type="date" class="form-control" />
+        <span asp-validation-for="ShowDate" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="NumberOfSeats"></label>
+        <input asp-for="NumberOfSeats" type="number" class="form-control" />
+        <span asp-validation-for="NumberOfSeats" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+</form>
+
+<hr />
+<p style="margin-top:20px;">
+    Already have a booking?
+    <a asp-controller="Booking" asp-action="ManageBookings">Manage your booking here</a>.
+</p>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

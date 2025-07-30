@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Booking Confirmation";
+}
+
+<div style="border:2px solid black; padding:20px; width:500px; margin:30px auto; text-align:center; font-family:sans-serif;">
+    <h2>Booking Successful</h2>
+
+    <p style="margin:20px 0;">
+        Thank you for booking with <strong>The Hervey Players</strong>.<br />
+        Your ticket details will be emailed to you shortly.
+    </p>
+
+    <hr style="margin:20px 0;" />
+
+    <p>
+        Need to update your booking date?
+        <a asp-controller="Booking" asp-action="ManageBookings">Manage Bookings</a>
+    </p>
+
+    <p>
+        Want to make another booking?
+        <a asp-controller="Booking" asp-action="Create">Book Again</a>
+    </p>
+
+    <p>
+        Return to home page:
+        <a asp-controller="Home" asp-action="Index">Home</a>
+    </p>
+</div>

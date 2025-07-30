@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerveyPlayersBooking", "HerveyPlayersBooking.csproj", "{B8396037-16D3-4F06-B865-C6D9404C7C03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerveyPlayersBooking.Tests", "..\HerveyPlayersBooking.Tests\HerveyPlayersBooking.Tests.csproj", "{4EFAEA4B-3B86-8080-4F70-CA630B89BCAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8396037-16D3-4F06-B865-C6D9404C7C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8396037-16D3-4F06-B865-C6D9404C7C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8396037-16D3-4F06-B865-C6D9404C7C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8396037-16D3-4F06-B865-C6D9404C7C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EFAEA4B-3B86-8080-4F70-CA630B89BCAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EFAEA4B-3B86-8080-4F70-CA630B89BCAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EFAEA4B-3B86-8080-4F70-CA630B89BCAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EFAEA4B-3B86-8080-4F70-CA630B89BCAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3754090D-D7E8-48D4-81A8-652988825FF8}
+	EndGlobalSection
+EndGlobal

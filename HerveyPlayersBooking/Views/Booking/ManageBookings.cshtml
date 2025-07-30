@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Booking Search / Edit Page";
+}
+
+<!-- Page Container -->
+<div style="border:2px solid black; padding:20px; width:600px; margin:20px auto; font-family:sans-serif;">
+
+    <!-- Page Title -->
+    <h2 style="text-align:center; margin-bottom:20px;">BOOKING SEARCH / EDIT PAGE</h2>
+
+    <!-- Search Section -->
+    <div style="margin-bottom:15px;">
+        <label for="searchName">Search by name:</label>
+        <input type="text" id="searchName" style="width:200px;" />
+        <button type="button" onclick="searchBookings()">SEARCH</button>
+    </div>
+
+    <!-- Results Section -->
+    <div style="margin-bottom:15px;">
+        <label>Results</label><br />
+        <select id="results" size="5" style="width:100%; height:100px;"></select>
+    </div>
+
+    <!-- Update Booking Section -->
+    <div style="margin-bottom:15px;">
+        <label>Booking edit...</label>
+        <button type="button" onclick="loadBooking()">UPDATE</button>
+    </div>
+
+    <!-- Current & New Booking Dates -->
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+        <!-- Current Booking -->
+        <div style="width:45%;">
+            <p>Current Booking:</p>
+            <label>Date:</label>
+            <input type="text" id="currentDate" readonly style="width:100%;" />
+        </div>
+
+        <!-- New Booking -->
+        <div style="width:45%;">
+            <p>New Booking:</p>
+            <label>Date:</label>
+            <input type="date" id="newDate" style="width:100%;" />
+            <button type="button" onclick="saveBooking()" style="margin-top:5px; width:100%;">SAVE</button>
+        </div>
+    </div>
+
+    <!-- Note -->
+    <p style="font-size: small; margin-top:20px; text-align:center;">
+        Note: If you want to delete a booking or change the number of seats call the main office on (07) 4321 4321.
+    </p>
+</div>
+
+@section Scripts {
+    <script>
+        // Search bookings by name
+        function searchBookings() {
+            var name = document.getElementById("searchName").value;
+
+            fetch(`/Booking/SearchByName?name=${encodeURIComponent(name)}`)
+                .then(response => response.json())
+                .then(data => {
+                    var results = document.getElementById("results");
+                    results.innerHTML = "";
+
+                    if (!data || data.length === 0) {
+                        var option = document.createElement("option");
+                        option.text = "No bookings found";
+                        results.add(option);
+                        return;
+                    }
+
+                    data.forEach(b => {
+                        var option = document.createElement("option");
+                        option.value = b.id;
+                        option.text = `${b.name} | ${new Date(b.showDate).toLocaleDateString()}`;
+                        results.add(option);
+                    });
+                });
+        }
+
+        // Load selected booking
+        function loadBooking() {
+            var selectedId = document.getElementById("results").value;
+            if (!selectedId) {
+                alert("Please select a booking first.");
+                return;
+            }
+
+            fetch(`/Booking/GetBooking?id=${selectedId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("currentDate").value =
+                        new Date(data.showDate).toLocaleDateString();
+
+                    // Pre-fill new date with current value
+                    document.getElementById("newDate").value =
+                        data.showDate.split("T")[0];
+                });
+        }
+
+        // Save updated booking date
+        function saveBooking() {
+            var selectedId = document.getElementById("results").value;
+            var newDate = document.getElementById("newDate").value;
+
+            if (!selectedId || !newDate) {
+                alert("Select a booking and choose a new date.");
+                return;
+            }
+
+            fetch(`/Booking/UpdateBookingDate`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: selectedId, newDate: newDate })
+            }).then(response => {
+                if (response.ok) {
+                    alert("Booking updated!");
+                    searchBookings();
+                } else {
+                    alert("Update failed.");
+                }
+            });
+        }
+    </script>
+}

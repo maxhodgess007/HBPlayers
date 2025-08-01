@@ -1,4 +1,4 @@
-If you get exceptions when you try and make a booking like Amandeep did - this should fix it. Regards, Max.
+If you get exceptions when you try and make a booking this should fix it. Regards, Max.
 
 ++++++++++++++++++++
 

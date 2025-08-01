@@ -16,7 +16,7 @@ How to fix it...
 
 2. Run these commands in Powershell
 
-	Add-Migration InitialCreate   # only if Migrations folder is empty
+	Add-Migration InitialCreate
 
 	Update-Database
 

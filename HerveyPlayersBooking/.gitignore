@@ -210,3 +210,6 @@ FodyWeavers.xsd
 
 # Local development settings
 appsettings.Development.json
+Logs/
+**/*.db-wal
+**/*.db-shm

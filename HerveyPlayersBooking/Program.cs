@@ -1,8 +1,22 @@
+using Serilog;
 using Microsoft.EntityFrameworkCore;
 using HerveyPlayersBooking.Data;
 using AutoMapper; // <-- Add AutoMapper namespace
 
+// =========================
+// Configure Serilog
+// =========================
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/app-.log", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 7)
+    .CreateLogger();
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Use Serilog as the logging provider
+builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -45,6 +59,11 @@ app.UseRouting();
 // Enable Session Middleware
 // =========================
 app.UseSession();
+
+// =========================
+// Enable Serilog Request Logging
+// =========================
+app.UseSerilogRequestLogging();
 
 app.UseAuthorization();
 
